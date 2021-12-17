@@ -1,6 +1,11 @@
 {
-  "name": "client",
+  "name": "redux-custom-events-wrapper",
   "version": "0.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "Alex Wright",
+    "email": "jawright94@gmail.com"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
