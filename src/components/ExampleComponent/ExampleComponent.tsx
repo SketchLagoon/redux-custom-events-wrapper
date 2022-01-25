@@ -7,14 +7,14 @@ interface ExampleComponentProps {
 const ExampleComponent = ({ buttonLabel }: ExampleComponentProps) => {
   return (
     <div className="example-component-wrapper">
-      <h1>Example Component</h1>
+      <h1>./src/components/ExampleComponent</h1>
       <h3>modify "test" key value pair on example state slice</h3>
       <button
         onClick={() => {
           trigger("EXAMPLE_COMPONENT_CLICK", {
             type: "ADD_TO_EXAMPLE_STATE",
             key: "test",
-            value: "first new value from ExampleComponent button click",
+            value: "test first new value from ExampleComponent button click",
           });
         }}
       >
@@ -28,7 +28,7 @@ const ExampleComponent = ({ buttonLabel }: ExampleComponentProps) => {
           trigger("EXAMPLE_COMPONENT_CLICK", {
             type: "ADD_TO_EXAMPLE_STATE",
             key: "test",
-            value: "second new value from ExampleComponent button click",
+            value: "test second new value from ExampleComponent button click",
           });
         }}
       >
