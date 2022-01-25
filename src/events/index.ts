@@ -1,5 +1,3 @@
-// events
-
 export type eventLibType = (
   eventType: string,
   listener: (event: CustomEvent) => void

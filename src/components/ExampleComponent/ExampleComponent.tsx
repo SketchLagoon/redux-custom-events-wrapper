@@ -1,38 +1,18 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store";
-
-import { on, off, trigger } from "../../events";
+import { trigger } from "../../events";
 
 interface ExampleComponentProps {
   buttonLabel: string;
 }
 
 const ExampleComponent = ({ buttonLabel }: ExampleComponentProps) => {
-  const dispatch = useDispatch();
-  const rootState = useSelector((state: RootState) => state.rootState);
-
-  const exampleComponentClickHandler = (event: any) => {
-    dispatch(event.detail);
-    console.log(rootState);
-  };
-
-  useEffect(() => {
-    on("EXAMPLE_COMPONENT_CLICK", exampleComponentClickHandler);
-
-    return () => {
-      off("EXAMPLE_COMPONENT_CLICK", exampleComponentClickHandler);
-    };
-  }, []);
-
   return (
     <div className="example-component-wrapper">
       <h1>Example Component</h1>
-
+      <h3>modify "test" key value pair on example state slice</h3>
       <button
         onClick={() => {
           trigger("EXAMPLE_COMPONENT_CLICK", {
-            type: "ADD_TO_ROOT_STATE",
+            type: "ADD_TO_EXAMPLE_STATE",
             key: "test",
             value: "first new value from ExampleComponent button click",
           });
@@ -41,16 +21,47 @@ const ExampleComponent = ({ buttonLabel }: ExampleComponentProps) => {
         first{buttonLabel}
       </button>
 
+      <br />
+
       <button
         onClick={() => {
           trigger("EXAMPLE_COMPONENT_CLICK", {
-            type: "ADD_TO_ROOT_STATE",
+            type: "ADD_TO_EXAMPLE_STATE",
             key: "test",
             value: "second new value from ExampleComponent button click",
           });
         }}
       >
         second{buttonLabel}
+      </button>
+
+      <hr />
+      <h3>add and modify "test1" key value pair on example state slice</h3>
+
+      <button
+        onClick={() => {
+          trigger("EXAMPLE_COMPONENT_CLICK", {
+            type: "ADD_TO_EXAMPLE_STATE",
+            key: "test2",
+            value: "test2 first value from ExampleComponent button click",
+          });
+        }}
+      >
+        1{buttonLabel}
+      </button>
+
+      <br />
+
+      <button
+        onClick={() => {
+          trigger("EXAMPLE_COMPONENT_CLICK", {
+            type: "ADD_TO_EXAMPLE_STATE",
+            key: "test2",
+            value: "test2 second value from ExampleComponent button click",
+          });
+        }}
+      >
+        2{buttonLabel}
       </button>
     </div>
   );

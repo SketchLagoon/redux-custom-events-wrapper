@@ -5,23 +5,33 @@ import store, { RootState } from "./store";
 
 import { ExampleComponent } from "./components";
 
+import { on, off } from "./events";
+
 function ExampleApp() {
-  // const dispatch = useDispatch();
-  // const todos = useSelector((state: RootState) => state.todos);
-  const rootState = useSelector((state: RootState) => state.rootState);
+  const dispatch = useDispatch();
+  const allState = useSelector((state) => state);
+  // const todos = useSelector((state) => state.todos);
+
+  const reduxDispatcher = (event: any) => {
+    dispatch(event.detail);
+    console.log(allState);
+  };
 
   useEffect(() => {
-    // dispatch({ type: "TODOS_FETCH_REQUESTED" });
-    // dispatch({
-    //   type: "ADD_TO_ROOT_STATE",
-    //   key: "test",
-    //   value: "new value from App.tsx useEffect",
-    // });
-    console.log(rootState);
+    on("EXAMPLE_COMPONENT_CLICK", reduxDispatcher);
+    console.log(allState);
+
+    return () => {
+      off("EXAMPLE_COMPONENT_CLICK", reduxDispatcher);
+    };
   }, []);
 
-  // console.log(todos);
-  // console.log(rootState);
+  // dispatch({ type: "TODOS_FETCH_REQUESTED" });
+  // dispatch({
+  //   type: "ADD_TO_ROOT_STATE",
+  //   key: "test",
+  //   value: "new value from App.tsx useEffect",
+  // });
 
   return (
     <div className="App">
